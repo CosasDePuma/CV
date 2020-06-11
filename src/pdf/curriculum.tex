@@ -1,0 +1,284 @@
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+\documentclass[11pt, a4paper]{style}
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+% Specify the location of the included fonts
+\fontdir[fonts/]
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange, awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-nephritis}
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
+% If you would like to change the social information separator from a pipe (|) to something else
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+%-------------------------------------------------------------------------------
+%	PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+\name{Kike}{Fontán}
+\born{11-01-1997}
+\position{\enskip}
+\address{\enskip}
+\mobile{(+34) 656-695-625}
+\email{kikefontanlorenzo@gmail.com}
+\homepage{kike.wtf}
+\github{CosasDePuma}
+\linkedin{kikefontan}
+
+\quote{``Este PDF también es un \textbf{bootloader}.\\\href{https://cv.kike.wtf}{Compruébalo pulsando aquí}."}
+%-------------------------------------------------------------------------------
+\begin{document}
+\makecvheader
+% Print the footer with 3 arguments(<left>, <center>, <right>)
+% Leave any of these blank if they are not needed
+\makecvfooter
+  {\today}
+  {Diego Enrique Fontán Lorenzo~~~·~~~Curriculum Vitae}
+  {\thepage}
+%-------------------------------------------------------------------------------
+%	EDUCATION
+%-------------------------------------------------------------------------------
+\cvsection{Educación}
+\begin{cventries}
+  \cventry
+    {Grado en Ingeniería Informática} % Title
+    {Escola Superior de Enxeñaría Informática (ESEI)} % Organization
+    {Ourense, Galicia} % Location
+    {Sept. 2018 - Jun. 2021} % Date(s)
+    {
+        \begin{cvitems} % Description(s) of tasks/responsibilities
+            \item {Miembro de la Junta de Escuela de la EET UVigo.}
+            \item {Miembro de la Comisión del Departamento de Electrónica.}
+            \item {Miembro de la Junta Directiva de la Delegación de Alumnos – DAAT (Responsable de la Infraestructura).}
+            \item {Miembro colaborador en la organización del XVI Foro Tecnolóxico de Emprego.}
+            \item {Miembro del comité de San Teleco.}
+            \item {Coordinador del Club de Seguridad Informática.}
+      \end{cvitems}
+    }
+\end{cventries}
+%-------------------------------------------------------------------------------
+%	SKILLS
+%-------------------------------------------------------------------------------
+\cvsection{Skills}
+\begin{cvskills}
+  \cvskill
+    {DevOps} % Category
+    {Docker, Kubernetes, CircleCI, TravisCI, Git, GitHub Actions...} % Skills
+  \cvskill
+    {Back-end} % Category
+    {Express, Mux, PHP, MongoDB, MySQL, SQLite3...} % Skills
+  \cvskill
+    {Front-end} % Category
+    {Pug, HTML5, SCSS/SASS, CoffeeScript, Bootstrap, Electron, Ionic...} % Skills
+  \cvskill
+    {Programming} % Category
+    {Golang, Python, JAVA, \LaTeX, Android, Haskell, Bash, Powershell, C/C++, NASM...} % Skills
+  \cvskill
+    {Hacking} % Category
+    {OSINT, Web Explotation, Reverse Engineering, Steganography...} % Skills
+  \cvskill
+    {Idiomas} % Category
+    {Español (nativo), Gallego (nativo), Inglés (First – FCE – CEFR level B2)} % Skills
+\end{cvskills}
+%-------------------------------------------------------------------------------
+%	EXPERIENCE
+%-------------------------------------------------------------------------------
+\cvsection{Experiencia}
+\begin{cventries}
+  \cventry
+    {Profesor y Divulgador Científico} % Job title
+    {CeoAberto} % Organization
+    {Vigo, Galicia | Ourense, Galicia} % Location
+    {Oct. 2017 - ACTUALIDAD} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Profesor de Aulas Tecnópole, STEAM Kids, T2W y T2W Online.}
+        \item {Ponente de diversas charlas sobre Seguridad Informática a más de 30 colegios e institutos bajo la iniciativa "Divulgación do Galego" promovido por el Concello de Vigo.}
+        \item {Monitor en diferentes talleres de carácter científico-informático durante la Science Fair OCastro British School.}
+        \item {Desarrollador adjunto de la infraestructura del espacio educativo virtual T2W Online.}
+        \item {Desarrollador del sistema de votación de diversas ferias científicas de caracter nacional, como Galiciencia o Festiciencia.}
+        \item {Desarrollador del varias soluciones software de apoyo a programas de divulgación científica y matemática.}
+        \item {BugHunter durante la Exporecerca Jove XXI.}
+      \end{cvitems}
+    }
+  \cventry
+    {Instructor Informático} % Job title
+    {La Molinera} % Organization
+    {Ourense, Galicia} % Location
+    {Mar. 2018 - Dic. 2019} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Impartición de diversas formaciones de carácter tecnológico basadas en temáticas como Realidad Virtual, Realidad Aumentada, Inteligencia Artificial, Programación, Videojuegos o Seguridad Informática.}
+        \item {Organizador de la iniciativa "Hackerspace Ourense" que aúna a jóvenes que comparten pasión por el Hacking y la Programación.}
+      \end{cvitems}
+    }
+  \cventry
+    {Pentester} % Job title
+    {VértigoSistems} % Organization
+    {Vigo, Galicia} % Location
+    {Feb. 2017 - Jul. 2019} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Especialista enfocado a realizar auditorías de Seguridad Informática a redes e infraestructuras como parte de la consultoría de servicios especializados en Seguridad Corporativa, así como trabajos de investigación OSINT y desarrollo de soluciones Cloud a medida.}
+        \item {Ponente en la conferencia privada de demostración de QRLJacking en el NH Hotel.}
+      \end{cvitems}
+    }
+  \cventry
+    {Profesor de Robótica} % Job title
+    {Camp Tecnológico} % Organization
+    {Ourense, Galicia} % Location
+    {Abr. 2018 - Jun. 2018} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Profesor de robótica y programación básica como actividad extraescolar en el Seminario Menor de Ourense.}
+      \end{cvitems}
+    }
+  \cventry
+    {Instructor de Programación} % Job title
+    {Escuela Superiot de Ingeniería de Telecomunicaciones (Universidade de Vigo)} % Organization
+    {Vigo, Galicia} % Location
+    {Mar. 2017 - May. 2017} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Instructor de programación en Bitsbox y Scratch durante la XVII SEMANA DA CIENCIA enfocado a alumnos de Bachillerato.}
+        \item {Instructor de programación en Bitsbox durante la semana OBRADOIROS DA CIENCIA APLICADA (OCA) enfocado a alumnas de la ESO y Bachillerato.}
+      \end{cvitems}
+    }
+\end{cventries}
+%-------------------------------------------------------------------------------
+%	EXTRACURRICULAR ACTIVITIES
+%-------------------------------------------------------------------------------    
+\cvsection{Actividades Extracurriculares}
+\begin{cventries}
+  \cventry
+    {Campus Expert} % Affiliation/role
+    {GitHub Campus Expert} % Organization/group
+    {Ourense, Galicia} % Location
+    {Sep. 2020} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {Miembro del programa GitHub Campus Expert que permite la organización de eventos respaldados oficialmente por GitHub en entornos universitarios.}
+      \end{cvitems}
+    }
+  \cventry
+    {Programador} % Affiliation/role
+    {SparkAR Closed Beta Developer Program} % Organization/group
+    {Ourense, Galicia} % Location
+    {Jul. 2018} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {Desarrollador Beta Tester del software de Realidad Aumentada diseñado por Facebook que permite generar filtros faciales para sus redes sociales.}
+      \end{cvitems}
+    }
+  \cventry
+    {Programador} % Affiliation/role
+    {Alexa Closed Beta Developer Program} % Organization/group
+    {Vigo, Galicia} % Location
+    {Jul. 2017} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {Desarrollador de Skills enfocadas al público hispanohablante con el fin de afianzar la robustez el Asistente Virtual de Amazon antes de su salida oficial en España y México.}
+      \end{cvitems}
+    }
+  \cventry
+    {Colaborador} % Affiliation/role
+    {A38 Sports – Holi Run Vigo} % Organization/group
+    {Vigo, Galicia} % Location
+    {May. 2015 - May.2017} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {Voluntario durante la organización y ejecución del evento solidario Holi Run en Vigo.}
+      \end{cvitems}
+    }
+  \cventry
+    {Voluntario} % Affiliation/role
+    {Banco de Alimentos} % Organization/group
+    {Vigo, Galicia} % Location
+    {May. 2015} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of experience/contributions/knowledge
+        \item {Encargado de la recolectar alimentos a las puertas de dos supermercados pertenecientes a Vigo durante la campaña anual de Recogida de Alimentos.}
+      \end{cvitems}
+    }
+\end{cventries}
+%-------------------------------------------------------------------------------
+%	HONORS & AWARDS
+%------------------------------------------------------------------------------- 
+\cvsection{Honores \& Premios}
+\cvsubsection{\\\\Hacking}
+\begin{cvhonors}
+  \cvhonor
+    {2º Puesto} % Award
+    {Cyber Pathways CTF | e2e-assure} % Event
+    {Internacional} % Location
+    {2020} % Date(s)
+  \cvhonor
+    {5º Puesto} % Award
+    {NationalCyberLeague | Guardia Civil} % Event
+    {Fase Nacional} % Location
+    {2020} % Date(s)
+  \cvhonor
+    {1ᵉʳ Puesto} % Award
+    {NationalCyberLeague | Guardia Civil} % Event
+    {Fase Autonómica} % Location
+    {2020} % Date(s)
+\end{cvhonors}
+\cvsubsection{Hackathon}
+\begin{cvhonors}
+  \cvhonor
+    {3ᵉʳ Puesto} % Award
+    {Hack4Good} % Event
+    {Vigo} % Location
+    {2018} % Date(s)
+  \cvhonor
+    {Participación} % Award
+    {ThinkBig Jóvenes} % Event
+    {Madrid} % Location
+    {2017} % Date(s)
+  \cvhonor
+    {Premio ThinkBig} % Award
+    {Hack4Good} % Event
+    {Vigo} % Location
+    {2017} % Date(s)
+  \cvhonor
+    {Participación} % Award
+    {Galicia Open Future\_} % Event
+    {S. de Compostela} % Location
+    {2016} % Date(s)
+  \cvhonor
+    {2º Puesto} % Award
+    {Hack4Good} % Event
+    {Vigo} % Location
+    {2016} % Date(s)
+\end{cvhonors}
+\cvsubsection{Divulgación Científica}
+\begin{cvhonors}
+  \cvhonor
+    {3ᵉʳ Premio} % Award
+    {Mentorizado | Galiciencia} % Event
+    {Ourense} % Location
+    {2019} % Date(s)
+  \cvhonor
+    {1ᵉʳ Premio} % Award
+    {Mentorizado | Premio Don Bosco} % Event
+    {Zaragoza} % Location
+    {2019} % Date(s)
+  \cvhonor
+    {Participación} % Award
+    {Galiciencia} % Event
+    {Ourense} % Location
+    {2015} % Date(s)
+  \cvhonor
+    {Participación} % Award
+    {Galiciencia} % Event
+    {Ourense} % Location
+    {2013} % Date(s)
+  \cvhonor
+    {Participación} % Award
+    {Galiciencia} % Event
+    {Ourense} % Location
+    {2012} % Date(s)
+\end{cvhonors}
+%-------------------------------------------------------------------------------
+\end{document}
