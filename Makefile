@@ -1,18 +1,27 @@
-.PHONY: all build clean test
+# ==================================
+# 	ENVIRONMENT
+# ==================================
 
 CC=nasm
 SRC=src
 DIST=dist
 BUILD=build
+PDF=pdfinfo
 TEX=xelatex
-VENV=qemu-system-i386
 LD=src/ld.py
+AUTHOR=Kike Fontán
+VENV=qemu-system-i386
+
+# ==================================
+# 	Rules
+# ==================================
+
+.PHONY: all build clean test
 
 all: build
 
 # Link the bootloader to the PDF
-build: $(BUILD)/curriculum.bin $(BUILD)/compressed.pdf
-	$(LD)
+build: $(DIST)/curriculum.pdf
 
 # Remove the generated files
 clean:
@@ -20,7 +29,12 @@ clean:
 
 # Open the bootloader
 test: $(DIST)/curriculum.pdf
+	$(PDF) $< 2&>/dev/null
 	$(VENV) -drive format=raw,file=$<
+
+# ==================================
+# 	Targets
+# ==================================
 
 # Compile the PDF
 $(BUILD)/curriculum.pdf: $(SRC)/tex/curriculum.tex $(SRC)/tex/style.cls
@@ -34,3 +48,8 @@ $(BUILD)/compressed.pdf: $(BUILD)/curriculum.pdf
 # Compile the bootloader
 $(BUILD)/curriculum.bin: $(SRC)/asm/curriculum.asm
 	$(CC) -f bin -o $@ $<
+
+# Generate the polymorphic PDF
+$(DIST)/curriculum.pdf: $(BUILD)/curriculum.bin $(BUILD)/compressed.pdf
+	$(LD)
+	sed -i 's/Creator \(.*\)/Creator \($(AUTHOR)\)/g' $@
