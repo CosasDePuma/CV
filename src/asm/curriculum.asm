@@ -1,7 +1,19 @@
 [BITS 16]
 
     JMP _start              ; Entrypoint
-    
+
+; ================================================
+;   CONSTANTS
+; ================================================
+
+; Screen
+width               EQU 320
+height              EQU 200
+; Player area
+pjarea_start        EQU 24h * width
+pjarea_size         EQU 72h
+; Dinosaur
+
 ; ================================================
 ;   BIOS PARAMETER BLOCK
 ; ================================================
@@ -37,12 +49,12 @@ BPB:
 ;   CODE (Stage 1)
 ; ================================================
 
-_start:
 _first_stage:
+_start:
     ; In real hardware, the BIOS puts the address
     ; of the booting drive on the DL register.
     MOV [drvaddr], DL
-
+__setup:
     ; Setting the Stack
     MOV AX, 07C0h           ; Stack Top
     ADD AX, 120h            ; Stack Space
@@ -50,52 +62,55 @@ _first_stage:
     MOV SP, 1000h           ; Stack Pointer
     MOV AX, 07C0h
     MOV DS, AX              ; Data Segment
-
+__graphical_mode:
     ; Enable Graphical Mode
     MOV AH, 00h             ; Interrupt 00h - Graphical Mode
-    MOV AL, 0Dh             ; Graphical Mode: 320x200 pixels, 16 colors, Graphics
+    MOV AL, 13h             ; Graphical Mode: 320x200 pixels, 256 colors, Graphics
     INT 10h                 ; Interrupt
-
+__background:
+    ; Draw mode - Graphical Segment
+    MOV AX, 0xA000          ; Graphical Segment Address
+    MOV ES, AX
     ; Fill the background
-    CALL CLS
-
+    MOV AL, 03h             ; Color: Cyan
+    XOR DI, DI              ; Position: 0,0
+    MOV CX, width*height    ; Number of times
+    REP STOSB               ; Repeat String Instruction
+    ; Draw the ground
+    XOR AX, AX              ; Color: Black
+    MOV DI, 150* width +20  ; Position: 20,140 = 140 times width + 20 
+    MOV CX, width -40       ; Line width.         
+    REP STOSB               ; Repeat String Instruction
+__header:
     ; Print the title
-    PUSH 05h                ; Column
-    PUSH 03h                ; Row
-    PUSH 1Dh                ; Message Length
+    PUSH 08h                ; Column
+    PUSH 02h                ; Row
+    PUSH 18h                ; Message Length
     PUSH title              ; Message
     CALL PRINT              ; Print procedure
-    
     ; Print the subtitle
-    PUSH 0Dh                ; Column
-    PUSH 05h                ; Row
-    PUSH 0Dh                ; Message Length
+    PUSH 0Ah                ; Column
+    PUSH 03h                ; Row
+    PUSH 15h                ; Message Length
     PUSH subtitle           ; Message
     CALL PRINT              ; Print procedure
-
+__footer:
     ; Print the footer
     PUSH 0Ch                ; Column
     PUSH 16h                ; Row
-    PUSH 0Fh                ; Message Length
+    PUSH 10h                ; Message Length
     PUSH footer             ; Message
     CALL PRINT              ; Print procedure
-
-
-    ; draw_border is in charge of calling draw_rock in a loop to draw all the cave border
-    ; no parameters
-    ;call draw_border
-
 _transition:
     ; Stage 1 only have 512 bytes of space.
     ; Need to jump to the Stage 2
 
     ; Restore the direction of the booting drive
     MOV DL, [drvaddr]
-
     ; Setup to Stage 2 
     MOV AH, 02h             ; Load Stage 2
     MOV CH, 00h             ; Cylinder number
-    MOV DH, 00              ; Head number
+    MOV DH, 0003h           ; Head number
     MOV AL, 01h             ; Num. of sectors to read
     MOV CL, 02h             ; Starting sector number (2, because 1 was already loaded)
     MOV BX, _second_stage   ; Stage 2 code
@@ -108,29 +123,6 @@ _transition:
 ;   PROCEDURES (Stage 1)
 ; ================================================
 
-; CLS: Fill the background with a given color
-;   - [BP + 4] Color
-CLS:
-    PUSH BP                 ; Save current Base Pointer
-    MOV BP, SP              ; Use Base Pointer as Stack Pointer
-    PUSHA                   ; Save all the Registers
-
-    MOV AH, 02h             ; Interrupt 02h - Move cursor
-    MOV BH, 00h             ; Page 0
-    MOV DX, 00h             ; Cursor: 0,0
-    INT 10h                 ; Interrupt
-
-    MOV AH, 0Ah             ; Interrupt 0Ah - Write a single character multiple times
-    MOV AL, 0xDB            ; Character (DBh = Rectangle)
-    MOV CX, 1000h           ; Number of characters
-    MOV BL, 03h             ; Color; Cyan
-    INT 10h                 ; Interrupt
-
-    POPA                    ; Restore all the Registers
-    MOV SP, BP              ; Restore the Stack Pointer
-    POP BP                  ; Restore the Base Pointer
-    RET                     ; Exit the procedure
-
 ; PRINT: Writes a text on the screen
 ;   - [BP + 4]  Message
 ;   - [BP + 6]  Message Length
@@ -140,19 +132,19 @@ PRINT:
     PUSH BP                 ; Save current Base Pointer
     MOV BP, SP              ; Use Base Pointer as Stack Pointer
     PUSHA                   ; Save all the Registers
-
+    ; Arguments
     MOV AX, 7C0h            ; Beginning of the code
     MOV ES, AX              
-    MOV DL, [BP + 10]       ; Column
-    MOV DH, [BP + 8]        ; Row
-    MOV CX, [BP + 6]        ; Message Length
-    MOV BP, [BP + 4]        ; Message
-
+    MOV DL, [BP + 0Ah]      ; Column
+    MOV DH, [BP + 08h]      ; Row
+    MOV CX, [BP + 06h]      ; Message Length
+    MOV BP, [BP + 04h]      ; Message
+    ; Code
     MOV AH, 13h             ; Interrupt 13h - Write
     MOV AL, 00h             ; Graphical Mode: 320x200 pixels, 16 colors, Graphics
-    MOV BL, 0Fh             ; Color: cYAN
+    MOV BL, 0Fh             ; Color: Cyan
     INT 10h                 ; Interrupt
-
+    ; Return
     POPA                    ; Restore all the Registers
     MOV SP, BP              ; Restore the Stack Pointer
     POP BP                  ; Restore the Base Pointer
@@ -165,9 +157,9 @@ PRINT:
 ; Store the drive address given by the BIOS
 drvaddr:    DB 00h 
 ; Strings
-title:      DB "SI ESTE CURRICULUM TE MOLA..."
-subtitle:   DB "ME CONTRATAS?"
-footer:     DB "-by KikeFontan-"
+title:      DB "?CURRICULUM INTERACTIVO?"
+subtitle:   DB "!TAMBIEN ES UN JUEGO!"
+footer:     DB "-by Kike Fontan-"
 
 ; ================================================
 ;   END (Stage 1)
@@ -183,13 +175,20 @@ DW 0xAA55                   ; PC Boot Signature
 ; ================================================
 
 _second_stage:
+    ; Draw mode _ Graphical Segment
+    MOV AX, 0xA000          ; Graphical Segment Address
+    MOV ES, AX
+_loop:
+
+_end:
     HLT                     ; End
 
-TIMES 1018 - ($ - $$) DB 0
+; ================================================
+;   DATA (Stage 2)
+; ================================================
 
 
-
-
+TIMES 03FAh - ($ - $$) DB 0 ; Maximum size
 
 
 
