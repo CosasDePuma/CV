@@ -1,5 +1,5 @@
-# Ignore
+# Ignored
 /**/_*
 /build/*
-# No ignore
+# Not ignored
 !/build/curriculum.pdf
