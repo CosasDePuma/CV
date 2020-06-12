@@ -1,0 +1,5 @@
+# Ignore
+/**/_*
+/build/*
+# No ignore
+!/build/curriculum.pdf
