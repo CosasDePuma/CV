@@ -15,7 +15,7 @@ Also, something totally incredible and absolutely useless in the eyes of many re
 ---
 Very simply.
 
-Having programmed a `bootloader`, just copy the binary file after the PDF header. This way, PDF readers will be able to handle the file in the usual way, **but so will computers or emulators!**
+Having programmed a `bootloader`, just copy the binary file after the PDF header. This way, PDF readers will be able to handle the file in the usual way, **but so will computers and emulators!**
 
 ### 🏃 How can I run it?
 ---
