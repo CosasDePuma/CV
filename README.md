@@ -6,7 +6,7 @@
 
 Here's my résumé, my CV, my Curriculum. It is completely made using Latex and Vim, because as a programmer I refused to use conventional and simple text editors. All my accomplishments are listed very briefly (or at least I tried to) in the pages that make it up.
 
-Also, something totally incredible and absolutely useless in the eyes of many recruiters is that...
+Also, something totally incredible ~~and absolutely useless in the eyes of many recruiters~~ about my CV is that...
 
     IT'S NOT ONLY A PDF, IT'S ALSO A BOOTLOADER
 
