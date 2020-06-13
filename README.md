@@ -4,7 +4,7 @@
 [![LinkedIn](https://img.shields.io/badge/kikefontan-blue.svg?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/kikefontan)
 [![Download (ES)](https://img.shields.io/badge/download-espa%C3%B1ol-green.svg?style=for-the-badge)](https://github.com/CosasDePuma/CV/releases/download/espa%C3%B1ol/curriculum.pdf)
 
-Here's my resume, my CV, my X. It is completely made using Latex and Vim, because as a programmer I refused to use conventional and simple text editors. All my accomplishments are listed very briefly (or at least I tried to) in the pages that make it up.
+Here's my résumé, my CV, my Curriculum. It is completely made using Latex and Vim, because as a programmer I refused to use conventional and simple text editors. All my accomplishments are listed very briefly (or at least I tried to) in the pages that make it up.
 
 Also, something totally incredible and absolutely useless in the eyes of many recruiters is that...
 
