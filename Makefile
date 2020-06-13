@@ -9,7 +9,7 @@ BUILD=build
 PDF=pdfinfo
 TEX=xelatex
 LD=src/ld.py
-AUTHOR=Kike Fontán
+AUTHOR=Kike Fontan
 VENV=qemu-system-i386
 
 # ==================================
@@ -29,7 +29,7 @@ clean:
 
 # Open the bootloader
 test: $(DIST)/curriculum.pdf
-	$(PDF) $< 2&>/dev/null
+	$(PDF) $< 2>/dev/null
 	$(VENV) -drive format=raw,file=$<
 
 # ==================================
