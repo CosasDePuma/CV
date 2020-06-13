@@ -73,39 +73,39 @@ __display:
         XOR DI, DI              ; Position: 0,0
         MOV CX, width*height    ; Number of times
         REP STOSB               ; Repeat String Instruction
-        ; Draw the ground
+    .separator:
         XOR AX, AX              ; Color: Black
-        MOV DI, 150* width +20  ; Position: 20,140 = 140 times width + 20 
+        MOV DI, 155* width +20  ; Position: 20,140 = 140 times width + 20 
         MOV CX, width -40       ; Line width.         
         REP STOSB               ; Repeat String Instruction
     .header:
         ; Print the title
         PUSH 08h                ; Column
-        PUSH 05h                ; Row
+        PUSH 03h                ; Row
         PUSH 18h                ; Message Length
         PUSH title              ; Message
         CALL PRINT              ; Print procedure
     .subheader:
         ; Print the subtitle
         PUSH 11h                ; Column
-        PUSH 07h                ; Row
+        PUSH 05h                ; Row
         PUSH 06h                ; Message Length
         PUSH subtitle           ; Message
         CALL PRINT              ; Print procedure
     .description:
         ; Print the description
         PUSH 04h                ; Column
-        PUSH 0Bh                ; Row
+        PUSH 0Eh                ; Row
         PUSH 20h                ; Message Length
         PUSH desc_1             ; Message
         CALL PRINT              ; Print procedure
         PUSH 04h                ; Column
-        PUSH 0Ch                ; Row
+        PUSH 0Fh                ; Row
         PUSH 20h                ; Message Length
         PUSH desc_2             ; Message
         CALL PRINT              ; Print procedure
         PUSH 04h                ; Column
-        PUSH 10h                ; Row
+        PUSH 0Ah                ; Row
         PUSH 20h                ; Message Length
         PUSH desc_3             ; Message
         CALL PRINT              ; Print procedure
